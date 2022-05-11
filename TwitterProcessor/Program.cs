@@ -15,6 +15,7 @@ builder.Services.AddHttpClient();
 // Use a Queue for data
 // This is a simple implementation that would be better to use RabbitMQ or Arure ServiceBus/Functions
 builder.Services.AddSingleton<ConcurrentQueue<string>>();
+builder.Services.AddSingleton<TwitterReader>();
 builder.Services.AddHostedService<ReadTweetQueue>();
 builder.Services.AddHostedService<QueuedWorker>();
 

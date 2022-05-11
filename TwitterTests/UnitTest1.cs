@@ -9,6 +9,7 @@ namespace TwitterTests
     [TestClass]
     public class UnitTest1
     {
+
         [TestMethod]
         public void TestTwitterStats()
         {
@@ -49,40 +50,40 @@ namespace TwitterTests
             Assert.IsTrue(data.TweetCount == 1);
         }
 
-        [TestMethod]
-        public void TestTwitterReader()
-        {
-            HttpClient httpClient = new HttpClient();
-            string bearerToken = "AAAAAAAAAAAAAAAAAAAAAFeocQEAAAAAMRidjdZzjMFNI%2FDD7DHpsvvhHPY%3DgDBMLfFbDiuUgMu3r2rXwbQctjw3mMpnlabPqhUIGQfQfW7CNn";
-            TwitterReader twitterReader = new TwitterReader(httpClient, bearerToken);
-            twitterReader.TwitterSetup(new System.Threading.CancellationToken()).Wait();
+        //[TestMethod]
+        //public void TestTwitterReader()
+        //{
+        //    HttpClient httpClient = new HttpClient();
+        //    string bearerToken = "AAAAAAAAAAAAAAAAAAAAAFeocQEAAAAAMRidjdZzjMFNI%2FDD7DHpsvvhHPY%3DgDBMLfFbDiuUgMu3r2rXwbQctjw3mMpnlabPqhUIGQfQfW7CNn";
+        //    TwitterReader twitterReader = new TwitterReader(httpClient, bearerToken);
+        //    twitterReader.TwitterSetup(new System.Threading.CancellationToken()).Wait();
 
-            string line = twitterReader.GetNextTweet().Result;
-            Assert.IsNotNull(line);
-            twitterReader.Dispose();
-        }
+        //    string line = twitterReader.GetNextTweet().Result;
+        //    Assert.IsNotNull(line);
+        //    twitterReader.Dispose();
+        //}
 
-        [TestMethod]
-        public void TestTwitterReaderBadToken()
-        {
-            HttpClient httpClient = new HttpClient();
-            string bearerToken = "xxxx";
-            TwitterReader? twitterReader =null;
-            try
-            {
+        //[TestMethod]
+        //public void TestTwitterReaderBadToken()
+        //{
+        //    HttpClient httpClient = new HttpClient();
+        //    string bearerToken = "xxxx";
+        //    TwitterReader? twitterReader =null;
+        //    try
+        //    {
 
-                twitterReader = new TwitterReader(httpClient, bearerToken);
-                twitterReader.TwitterSetup(new System.Threading.CancellationToken()).Wait();
-                string line = twitterReader.GetNextTweet().Result;
-                Assert.IsNotNull(line);
-            }
-            catch (System.Exception ex)
-            {
-                // should get error: Response status code does not indicate success: 401 (Unauthorized).
-            }
-            if (twitterReader != null)
-                twitterReader.Dispose();
-        }
+        //        twitterReader = new TwitterReader(httpClient, bearerToken);
+        //        twitterReader.TwitterSetup(new System.Threading.CancellationToken()).Wait();
+        //        string line = twitterReader.GetNextTweet().Result;
+        //        Assert.IsNotNull(line);
+        //    }
+        //    catch (System.Exception ex)
+        //    {
+        //        // should get error: Response status code does not indicate success: 401 (Unauthorized).
+        //    }
+        //    if (twitterReader != null)
+        //        twitterReader.Dispose();
+        //}
 
     }
 }

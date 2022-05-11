@@ -11,43 +11,36 @@ namespace TwitterProcessor
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly TwitterRepository _twitterStats;
 
-        private string _url = "https://api.twitter.com/2/tweets/sample/stream";
-        private string _bearerToken;
-
         private ConcurrentQueue<string> _queue;
         private TwitterReader _twitterReader;
 
         public QueuedWorker(ILogger<QueuedWorker> logger, IHttpClientFactory httpClientFactory,
-            IConfiguration configuration, TwitterRepository twitterStats, ConcurrentQueue<string> queue)
+            IConfiguration configuration, TwitterRepository twitterStats, ConcurrentQueue<string> queue,
+            TwitterReader twitterReader)
         {
             _logger = logger;
             _httpClientFactory = httpClientFactory;
-            IConfigurationSection section = configuration.GetSection("Twitter");
-            _bearerToken = section.GetValue<string>("BearerToken");
             _twitterStats = twitterStats;
             _queue = queue;
+            _twitterReader = twitterReader;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             HttpClient httpClient = _httpClientFactory.CreateClient();
-            // instantiate the TwitterReader
-            using (_twitterReader = new TwitterReader(httpClient, _bearerToken))
+            try
             {
-                try
-                {
-                    await _twitterReader.TwitterSetup(stoppingToken);
+                await _twitterReader.TwitterSetup(stoppingToken);
 
-                    while (!stoppingToken.IsCancellationRequested)
-                    {
-                        string line = await _twitterReader.GetNextTweet();
-                        _queue.Enqueue(line);
-                    }
-                }
-                catch (Exception ex)
+                while (!stoppingToken.IsCancellationRequested)
                 {
-                    _logger.LogError(ex, "Error reading Tritter stream");
+                    string line = await _twitterReader.GetNextTweet();
+                    _queue.Enqueue(line);
                 }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error reading Tritter stream");
             }
         }
 

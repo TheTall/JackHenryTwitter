@@ -15,6 +15,10 @@ namespace DataLayer
 
         public void WriteTwitterData(string tweetData)
         {
+            // set startdate on first write of twitter data
+            if (startTime == null)
+                startTime = DateTime.Now;
+
             Tweet tweet = JsonConvert.DeserializeObject<Tweet>(tweetData);
             // This is where you would store the twitter data
 
@@ -26,8 +30,6 @@ namespace DataLayer
 
         public async Task<TweetStats> GetStatistics()
         {
-            if (startTime == null)
-                startTime = DateTime.Now;
 
             // would be reading a database async
 

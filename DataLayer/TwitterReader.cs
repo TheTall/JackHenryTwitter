@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,16 +12,18 @@ namespace DataLayer
     {
         private readonly HttpClient _httpClient;
 
-        private string _url = "https://api.twitter.com/2/tweets/sample/stream";
+        private string _url;
         private string _bearerToken;
 
         private Stream _stream;
         private StreamReader _reader;
 
-        public TwitterReader(HttpClient httpClient, string bearerToken)
+        public TwitterReader(IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
-            _httpClient = httpClient;
-            _bearerToken = bearerToken;
+            _httpClient = httpClientFactory.CreateClient();
+            var section = configuration.GetSection("Twitter");
+            _bearerToken = section["BearerToken"];
+            _url = section["StreamURL"];
         }
         public async Task TwitterSetup(CancellationToken stoppingToken)
         {

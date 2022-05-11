@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{D395A930-6482-4898-A37B-3CF8E40D96DB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterProcessor", "TwitterProcessor\TwitterProcessor.csproj", "{A019F280-90B1-433A-8E12-14D4456D92E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterTests", "TwitterTests\TwitterTests.csproj", "{FA7F9761-2DAC-48E3-820A-760F743B0B48}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D395A930-6482-4898-A37B-3CF8E40D96DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D395A930-6482-4898-A37B-3CF8E40D96DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D395A930-6482-4898-A37B-3CF8E40D96DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D395A930-6482-4898-A37B-3CF8E40D96DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A019F280-90B1-433A-8E12-14D4456D92E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A019F280-90B1-433A-8E12-14D4456D92E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A019F280-90B1-433A-8E12-14D4456D92E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A019F280-90B1-433A-8E12-14D4456D92E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA7F9761-2DAC-48E3-820A-760F743B0B48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA7F9761-2DAC-48E3-820A-760F743B0B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA7F9761-2DAC-48E3-820A-760F743B0B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA7F9761-2DAC-48E3-820A-760F743B0B48}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6CBE59EC-73E5-4D46-9BF4-5252D1305CE0}
+	EndGlobalSection
+EndGlobal

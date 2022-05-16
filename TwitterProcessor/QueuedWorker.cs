@@ -7,7 +7,6 @@ namespace TwitterProcessor
     public class QueuedWorker : BackgroundService
     {
         private readonly ILogger<QueuedWorker> _logger;
-        //private readonly IBackgroundTaskQueue _taskQueue;
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly TwitterRepository _twitterStats;
 
@@ -15,7 +14,7 @@ namespace TwitterProcessor
         private TwitterReader _twitterReader;
 
         public QueuedWorker(ILogger<QueuedWorker> logger, IHttpClientFactory httpClientFactory,
-            IConfiguration configuration, TwitterRepository twitterStats, ConcurrentQueue<string> queue,
+            TwitterRepository twitterStats, ConcurrentQueue<string> queue,
             TwitterReader twitterReader)
         {
             _logger = logger;
